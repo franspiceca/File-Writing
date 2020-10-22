@@ -21,4 +21,11 @@ with open("hw_diamonds.csv", mode="w") as fw:
         fw.write(row)
         print(row, end="")
         
+ ##Read the file hw_diamonds.csv and print the first ten rows (including the header) under the columns carat and clarity, separated by a tab between columns
+ with open("hw_diamonds.csv", mode="r") as fr:
+    lines = fr.readlines()
+    for line in lines[:11]:
+        splitline = line.split('/')
+        print(splitline[0], splitline[3])
  
+
