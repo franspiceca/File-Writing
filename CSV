@@ -1,0 +1,24 @@
+from seaborn import load_dataset
+df = load_dataset("diamonds")
+df.head()
+
+##CSV file named hw_diamonds.csv under the current directory, delimeter is "/"
+with open("hw_diamonds.csv", mode="w") as fw:
+    header = "carat/cut/color/clarity/depth/table/price\n"
+    fw.write(header)
+    print(header, end="")  
+    
+    for index, val in df.iterrows():
+        carat = val.carat
+        cut = val.cut
+        color = val.color
+        clarity = val.clarity
+        depth = val.depth
+        table = val.table
+        price = val.price
+        
+        row = ("{}/{}/{}/{}/{}/{}/{}\n".format(carat, cut, color, clarity, depth, table, price))
+        fw.write(row)
+        print(row, end="")
+        
+ 
