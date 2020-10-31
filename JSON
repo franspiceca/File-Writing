@@ -1,0 +1,26 @@
+##Using titanic dataset
+df = load_dataset("titanic")
+df.head()
+
+##list passengers, in which each element is a dictionary with the keys being sex, pclass, and embark_town and the values being their corresponding values in df.
+passengers = []
+
+for idx, val in df.iterrows():
+    sex = val.sex
+    pclass = val.pclass
+    town = val.embark_town
+    
+    passenger = {"sex": sex, "pclass": pclass, "town": town}
+    passengers.append(passenger)
+    
+passengers[:5]
+
+##Serialize passengers as a JSON formatted stream to a file named ex_passengers.json
+with open("ex_passengers.json", "w") as fw:
+    json.dump(passengers, fw)
+    
+##Deserialize the ex_passengers.json file under the directory data to a Python list named passengers_new.
+with open("ex_passengers.json", "r") as fr:
+    passengers_new = json.load(fr)
+    
+passengers_new[:5]
