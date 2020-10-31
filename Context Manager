@@ -1,0 +1,48 @@
+##list l of integers from 1 (inclusive) to 100 (inclusive). Write a CSV file named ex_output.csv under the directory data. 
+##The file contains only one column name id in the first row and, starting from the second row, each number from l in each line.
+l = range(1, 101)
+with open("ex_output.csv", mode="w") as fw:
+    fw.write("id\n")
+    for num in l:
+        fw.write("{}\n".format(num)) 
+
+##Write another CSV file named ex_output2.csv under the directory data. 
+##The file contains three column names id, square, and cube in the first row and, starting from the second row, each number from l, its square, and its cube in each line. 
+##The delimiter between columns is a comma.
+l = range(1, 101)
+with open("ex_output2.csv", mode="w") as fw:
+    fw.write("id,square,cube\n")
+    for num in l:
+        fw.write("{},{},{}\n".format(num, num**2, num**3))
+
+##Loading dataset to edit
+df = load_dataset("titanic")
+df.head()
+
+##CSV file named ex_titanic.csv under the directory data. 
+##The file contains three column names sex, pclass and embark_town in the first row and the values from the corresponding columns of df in the following rows. 
+##The delimiter between columns is a tab.
+with open("ex_titanic.csv", mode="w") as fw:
+    fw.write("sex\tclass\tembark_town\n")
+    
+    for idx, val in df.iterrows():
+        sex = val.sex
+        pclass = val.pclass
+        town = val.embark_town
+        
+        fw.write("{}\t{}\t{}\n".format(sex, pclass, town))
+
+##CSV file named ex_titanic2.csv under the directory data. The file contains the same contents as ex_titanic.csv. 
+##In addition, it contains another column named num_fam_mems, meaning the number of family members.
+with open("ex_titanic2.csv", mode="w") as fw:
+    fw.write("sex\tpclass\tembark_town\tnum_fam_mems\n")
+    
+    for idx, val in df.iterrows():
+        sex = val.sex
+        pclass = val.pclass
+        town = val.embark_town
+        num_fam_mems = val.sibsp + val.parch
+        
+        fw.write("{}\t{}\t{}\t{}\n".format(sex, pclass, town, num_fam_mems))
+
+##Read the file ex_titanic2.csv under the directory data and print the first five rows as they are.
